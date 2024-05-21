@@ -2265,9 +2265,9 @@ static int __drm_mode_atomic_ioctl(struct drm_device *dev, void *data,
 			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 0);
 			break;
 		case 2:
-			cpu_input_boost_kick_max(50);
-			devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 50);
-			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 50);
+			cpu_input_boost_kick_max(60);
+			devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 60);
+			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 60);
 			break;
 		case 3:
 			cpu_input_boost_kick_max(120);
@@ -2275,17 +2275,18 @@ static int __drm_mode_atomic_ioctl(struct drm_device *dev, void *data,
 			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 120);
 			break;
 		case 4:
-			cpu_input_boost_kick_max(300);
-			devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 300);
-			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 300);
+			cpu_input_boost_kick_max(600);
+			devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 600);
+			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 600);
 			break;
 		default:
 			break;
 		}
 #else
-		cpu_input_boost_kick_max(50);
-		devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 50);
-		devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 50);
+		/* Boost Freq CPU & DDR bus when userspace */
+		cpu_input_boost_kick();
+		devfreq_boost_kick(DEVFREQ_MSM_LLCCBW);
+		devfreq_boost_kick(DEVFREQ_MSM_CPUBW);
 #endif
 	}
 

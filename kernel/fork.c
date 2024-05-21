@@ -2118,14 +2118,14 @@ long _do_fork(unsigned long clone_flags,
 		switch (kp_active_mode()) {
 		case 0:
 		case 1:
-			cpu_input_boost_kick_max(30);
+			cpu_input_boost_kick_max(0);
 			devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 0);
 			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 0);
 			break;
 		case 2:
-			cpu_input_boost_kick_max(50);
-			devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 50);
-			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 50);
+			cpu_input_boost_kick_max(60);
+			devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 60);
+			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 60);
 			break;
 		case 3:
 			cpu_input_boost_kick_max(120);
@@ -2133,17 +2133,18 @@ long _do_fork(unsigned long clone_flags,
 			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 120);
 			break;
 		case 4:
-			cpu_input_boost_kick_max(300);
-			devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 300);
-			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 300);
+			cpu_input_boost_kick_max(600);
+			devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 600);
+			devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 600);
 			break;
 		default:
 			break;
 		}
 #else
-		/* Boost DDR bus to the max for 50 ms when userspace launches an app */
-		devfreq_boost_kick_max(DEVFREQ_MSM_LLCCBW, 50);
-		devfreq_boost_kick_max(DEVFREQ_MSM_CPUBW, 50);
+		/* Boost Freq CPU & DDR bus when userspace */
+		cpu_input_boost_kick();
+		devfreq_boost_kick(DEVFREQ_MSM_LLCCBW);
+		devfreq_boost_kick(DEVFREQ_MSM_CPUBW);
 #endif
 	}
 
