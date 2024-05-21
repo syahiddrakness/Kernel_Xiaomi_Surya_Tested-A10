@@ -399,7 +399,7 @@
 
 &pm6150_qg {
 	qcom,battery-data = <&mtp_batterydata>;
-	qcom,qg-iterm-ma = <3000>;
+	qcom,qg-iterm-ma = <900>;
 	qcom,hold-soc-while-full;
 	qcom,linearize-soc;
 	qcom,cl-feedback-on;
@@ -467,7 +467,7 @@
 	dpdm-supply = <&qusb_phy0>;
 	qcom,charger-temp-max = <1500>;
 	qcom,smb-temp-max = <1500>;
-	qcom,fcc-step-delay-ms = <5000>;
+	qcom,fcc-step-delay-ms = <1000>;
 	qcom,fcc-step-size-ua = <400000>;
 	qcom,disable-sw-thermal-regulation;
 	qcom,disable-fcc-restriction;
