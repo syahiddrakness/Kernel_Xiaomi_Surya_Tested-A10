@@ -112,7 +112,7 @@ unsigned int sysctl_sched_cstate_aware = 1;
  *
  * (default SCHED_TUNABLESCALING_LOG = *(1+ilog(ncpus))
  */
-enum sched_tunable_scaling sysctl_sched_tunable_scaling = SCHED_TUNABLESCALING_LINEAR;
+enum sched_tunable_scaling sysctl_sched_tunable_scaling = SCHED_TUNABLESCALING_NONE;
 
 /*
  * Minimal preemption granularity for CPU-bound tasks:
@@ -4414,7 +4414,7 @@ void cfs_bandwidth_usage_dec(void) {}
  */
 static inline u64 default_cfs_period(void)
 {
-	return 1000ULL;
+	return 100ULL;
 }
 
 static inline u64 sched_cfs_bandwidth_slice(void)
