@@ -3808,12 +3808,13 @@
 ####################################################
 #                                                  #
 # - Name Kernel     = CABAI RAWIT                  #
-# - Status          = STABLE                       #
-# - Category Kernel = BALANCE (OVERVOLT)           #
-# - Device          = surya                        #
-# - Version Android = 10 & 11                      #
-# - Vendor          = MIUI A10                     #
-# - Build Date      = 15102023                     #
+# - Status          =                              #
+# - Category Kernel =                              #
+# - Device          =                              #
+# - Version Android =                              #
+# - Vendor          =                              #
+# - Build Date      =                              #
+# - Last Commit     =                              #
 # - Build Clock     =                              #
 #                                                  #
 ####################################################
