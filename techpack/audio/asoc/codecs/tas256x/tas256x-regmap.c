@@ -1495,7 +1495,7 @@ static void init_work_routine(struct work_struct *work)
 {
 	struct tas256x_priv *p_tas256x =
 		container_of(work, struct tas256x_priv, init_work.work);
-	int nResult = 0;
+	// int nResult = 0;
 	//int irqreg;
 	//dev_dbg(p_tas256x->dev, "%s\n", __func__);
 #ifdef CONFIG_TAS256X_CODEC
@@ -1507,12 +1507,12 @@ static void init_work_routine(struct work_struct *work)
 	dev_dbg(p_tas256x->dev, "IRQ reg is: %s tas256x_select_cfg_blk %d\n",
 		__func__, __LINE__);
 #endif
-	nResult = tas256x_set_power_up(p_tas256x, channel_both);
+	tas256x_set_power_up(p_tas256x, channel_both);
 
 	//dev_dbg(p_tas256x->dev, "set ICN to -80dB\n");
-	nResult = tas256x_icn_data(p_tas256x, channel_both);
+	tas256x_icn_data(p_tas256x, channel_both);
 
-	nResult = gpio_get_value(p_tas256x->devs[0]->mn_irq_gpio);
+	gpio_get_value(p_tas256x->devs[0]->mn_irq_gpio);
 	/*dev_dbg(p_tas256x->dev, "%s, irq GPIO state: %d\n",
 	 *	__func__, nResult);
 	 */

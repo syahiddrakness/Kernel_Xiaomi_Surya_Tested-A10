@@ -919,7 +919,7 @@ EXPORT_SYMBOL(apr_end_rx_rt);
 int apr_deregister(void *handle)
 {
 	struct apr_svc *svc = handle;
-	struct apr_client *clnt;
+	// struct apr_client *clnt;
 	uint16_t dest_id;
 	uint16_t client_id;
 
@@ -936,7 +936,7 @@ int apr_deregister(void *handle)
 
 	dest_id = svc->dest_id;
 	client_id = svc->client_id;
-	clnt = &client[dest_id][client_id];
+	// clnt = &client[dest_id][client_id];
 
 	if (svc->svc_cnt > 0) {
 		if (svc->port_cnt)

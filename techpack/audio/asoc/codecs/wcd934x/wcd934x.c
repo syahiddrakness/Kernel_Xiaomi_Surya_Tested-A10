@@ -2740,7 +2740,7 @@ static int tavil_codec_hphr_dac_event(struct snd_soc_dapm_widget *w,
 	int hph_mode = tavil->hph_mode;
 	u8 dem_inp;
 	struct tavil_dsd_config *dsd_conf = tavil->dsd_config;
-	int ret = 0;
+	// int ret = 0;
 
 	dev_dbg(codec->dev, "%s wname: %s event: %d hph_mode: %d\n", __func__,
 		w->name, event, hph_mode);
@@ -2748,7 +2748,7 @@ static int tavil_codec_hphr_dac_event(struct snd_soc_dapm_widget *w,
 	switch (event) {
 	case SND_SOC_DAPM_PRE_PMU:
 		if (tavil->anc_func) {
-			ret = tavil_codec_enable_anc(w, kcontrol, event);
+			tavil_codec_enable_anc(w, kcontrol, event);
 			/* 40 msec delay is needed to avoid click and pop */
 			msleep(40);
 		}
@@ -4040,7 +4040,7 @@ static int tavil_codec_enable_main_path(struct snd_soc_dapm_widget *w,
 	struct snd_soc_codec *codec = snd_soc_dapm_to_codec(w->dapm);
 	struct tavil_priv *tavil = snd_soc_codec_get_drvdata(codec);
 	u16 gain_reg;
-	u16 reg;
+	// u16 reg;
 	int val;
 	int offset_val = 0;
 
@@ -4053,8 +4053,8 @@ static int tavil_codec_enable_main_path(struct snd_soc_dapm_widget *w,
 		return -EINVAL;
 	};
 
-	reg = WCD934X_CDC_RX0_RX_PATH_CTL + (w->shift *
-					     WCD934X_RX_PATH_CTL_OFFSET);
+	// reg = WCD934X_CDC_RX0_RX_PATH_CTL + (w->shift *
+	//				     WCD934X_RX_PATH_CTL_OFFSET);
 	gain_reg = WCD934X_CDC_RX0_RX_VOL_CTL + (w->shift *
 						 WCD934X_RX_PATH_CTL_OFFSET);
 
@@ -4361,7 +4361,7 @@ static void tavil_tx_mute_update_callback(struct work_struct *work)
 	struct tavil_priv *tavil;
 	struct delayed_work *delayed_work;
 	struct snd_soc_codec *codec;
-	u16 tx_vol_ctl_reg, hpf_gate_reg;
+	u16 tx_vol_ctl_reg; // , hpf_gate_reg;
 
 	delayed_work = to_delayed_work(work);
 	tx_mute_dwork = container_of(delayed_work, struct tx_mute_work, dwork);
@@ -4370,8 +4370,8 @@ static void tavil_tx_mute_update_callback(struct work_struct *work)
 
 	tx_vol_ctl_reg = WCD934X_CDC_TX0_TX_PATH_CTL +
 			 16 * tx_mute_dwork->decimator;
-	hpf_gate_reg = WCD934X_CDC_TX0_TX_PATH_SEC2 +
-		       16 * tx_mute_dwork->decimator;
+	// hpf_gate_reg = WCD934X_CDC_TX0_TX_PATH_SEC2 +
+	//	       16 * tx_mute_dwork->decimator;
 	snd_soc_update_bits(codec, tx_vol_ctl_reg, 0x10, 0x00);
 }
 

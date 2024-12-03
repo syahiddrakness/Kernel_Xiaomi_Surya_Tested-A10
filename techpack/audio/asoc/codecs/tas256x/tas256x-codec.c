@@ -79,7 +79,7 @@ static int tas256x_mute_ctrl_put(struct snd_kcontrol *pKcontrol,
 
 void failsafe(struct tas256x_priv  *p_tas256x)
 {
-	int n_result;
+	// int n_result;
 
 	dev_err(p_tas256x->dev, "%s\n", __func__);
 	p_tas256x->mn_err_code |= ERROR_FAILSAFE;
@@ -93,12 +93,12 @@ void failsafe(struct tas256x_priv  *p_tas256x)
 		return;
 	}
 
-	n_result = tas256x_set_power_shutdown(p_tas256x, channel_both);
+	tas256x_set_power_shutdown(p_tas256x, channel_both);
 	p_tas256x->mb_power_up = false;
 	p_tas256x->mn_power_state = TAS256X_POWER_SHUTDOWN;
 	msleep(20);
 	/*Mask interrupt for TDM*/
-	n_result = tas256x_interrupt_enable(p_tas256x, 0/*Disable*/,
+	tas256x_interrupt_enable(p_tas256x, 0/*Disable*/,
 		channel_both);
 	p_tas256x->enable_irq(p_tas256x, false);
 	p_tas256x->hw_reset(p_tas256x);
